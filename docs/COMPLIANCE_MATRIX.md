@@ -116,7 +116,7 @@
 | E12 | Secret management; no secrets client-side or in git | `.gitignore`, `env.ts`; review | CR | PASS | |
 | E13 | Audit log of admin actions | `audit.ts` | IT | PASS | |
 | E14 | No default admin; secure first-admin setup; recovery documented | `/admin/setup`, `admin:create --reset` | CR | PASS | Token **now required** in production |
-| E15 | Security headers | `next.config.ts` | E2E | PARTIAL | Baseline CSP added; `script-src` not restricted yet |
+| E15 | Security headers | `next.config.mjs` | E2E | PARTIAL | Baseline CSP added; `script-src` not restricted yet |
 | E16 | Dependency vulnerabilities | `npm audit`: 0 | tool | PASS | |
 | E17 | Least-privilege DB and storage access | DEPLOYMENT.md guidance | CR | BLOCKED | Depends on production provisioning |
 | E18 | Privacy: cookie consent before analytics; IPs hashed | `cookie-consent.tsx`, `hashIdentifier` | IT, CR | PASS | |
@@ -153,7 +153,7 @@
 | ID | Requirement | Evidence | Verified by | Status | Notes |
 |---|---|---|---|---|---|
 | H1 | Preserve slugs and URL structure | replay: every live 200 URL resolves | HTTP | PASS | |
-| H2 | Redirects for changed URLs; no chains; no irrelevant homepage redirects | `next.config.ts`, `proxy.ts`, REDIRECT_MAP.csv | HTTP, E2E | PASS | Feeds, sitemaps, `/?s=`, uppercase and `/index.php` **added** |
+| H2 | Redirects for changed URLs; no chains; no irrelevant homepage redirects | `next.config.mjs`, `proxy.ts`, REDIRECT_MAP.csv | HTTP, E2E | PASS | Feeds, sitemaps, `/?s=`, uppercase and `/index.php` **added** |
 | H3 | Server-rendered/static public pages | ISR | CR | PASS | |
 | H4 | Unique titles and meta descriptions | 237/237 pages have a description | HTTP | PASS | French titles follow CMS titles (inherited English titles) |
 | H5 | Canonical URLs | self-canonical from `SITE_URL` | E2E | PASS | Production needs `SITE_URL` set |

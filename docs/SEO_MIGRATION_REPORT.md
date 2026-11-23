@@ -47,7 +47,7 @@ No ranking or traffic outcome is guaranteed. The goal is that every URL Google k
 | `/page/2/` (blog pagination on the static home) | 200 | 404 | The homepage is a static page; posts are paginated under `/press-releases/page/N/` |
 | `/comments/feed/`, `/wp-json/`, `/wp-admin/`, `/xmlrpc.php` | 200 / various | 404 | WordPress internals |
 | French `<title>` | English | follows the FR page title in the CMS | Editors can translate titles now |
-| Redirect code | 301 | 308 for rules in `next.config.ts`, 301 for proxy rules | Both are permanent; Google treats them the same |
+| Redirect code | 301 | 308 for rules in `next.config.mjs`, 301 for proxy rules | Both are permanent; Google treats them the same |
 
 ## Remaining items
 

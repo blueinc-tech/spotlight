@@ -106,7 +106,7 @@ The full launch checklist and rollback procedure are in [ROLLBACK_PLAN.md](ROLLB
 - **Form notifications:** every submission is stored before any email is attempted. **CMS → Submissions** shows whether the email provider accepted the notification, the error otherwise, and the number of attempts.
   - Pending notifications are retried with back-off (5 min, 15 min, 45 min…, at most 5 attempts) after new submissions, by the daily cron job and from the **Retry email** button.
   - "Accepted" means the SMTP server took the message. Inbox delivery is only visible in the email provider's dashboard.
-- **Security headers** are set in `next.config.ts`:
+- **Security headers** are set in `next.config.mjs`:
   - HSTS, nosniff, Referrer-Policy, frame-ancestors (SAMEORIGIN), Permissions-Policy;
   - a baseline Content-Security-Policy (`object-src 'none'; base-uri 'self'; frame-ancestors 'self'`, plus `upgrade-insecure-requests` when `SITE_URL` is https). Script sources are not restricted yet, because the embeds and analytics need them; a nonce-based `script-src` is a possible next step;
   - `X-Robots-Tag: noindex` on `/admin`.

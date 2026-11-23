@@ -1,4 +1,3 @@
-import type { NextConfig } from "next";
 
 const mediaBase = process.env.NEXT_PUBLIC_MEDIA_BASE_URL;
 const mediaHost = (() => {
@@ -29,7 +28,8 @@ const securityHeaders = [
   },
 ];
 
-const nextConfig: NextConfig = {
+/** @type {import("next").NextConfig} */
+const nextConfig = {
   // WordPress URLs end with a slash; keeping it avoids a redirect on every legacy link.
   trailingSlash: true,
   poweredByHeader: false,
@@ -47,7 +47,7 @@ const nextConfig: NextConfig = {
     minimumCacheTTL: 2592000,
     remotePatterns: [
       ...(mediaHost
-        ? [{ protocol: mediaHost.protocol.replace(":", "") as "http" | "https", hostname: mediaHost.hostname }]
+        ? [{ protocol: mediaHost.protocol.replace(":", ""), hostname: mediaHost.hostname }]
         : []),
       { protocol: "https", hostname: "img.youtube.com" },
     ],
@@ -55,7 +55,7 @@ const nextConfig: NextConfig = {
   },
   // Legacy WordPress URLs (see docs/MIGRATION_MAP.md). Editor-managed redirects live in the database.
   async redirects() {
-    const rules: [string, string][] = [
+    const rules = [
       ["/events/spotlight-nigeria-2023", "/2023-programme2/"],
       ["/events/:slug*", "/programme/"],
       ["/events_cat/:slug*", "/programme/"],
@@ -71,11 +71,11 @@ const nextConfig: NextConfig = {
       ["/new/sponsorship-registration", "/sponsorship-registration/"],
       ["/home", "/"],
     ];
-    const withSlash = (s: string) => (s.endsWith("*") ? s : `${s}/`);
+    const withSlash = (s) => (s.endsWith("*") ? s : `${s}/`);
     return [
       {
         source: "/:path*",
-        has: [{ type: "host" as const, value: "www.spotlightnigeria-france.com" }],
+        has: [{ type: "host", value: "www.spotlightnigeria-france.com" }],
         destination: "https://spotlightnigeria-france.com/:path*",
         permanent: true,
       },

@@ -65,7 +65,7 @@ export function RedirectsManager({ initial }: { initial: Row[] }) {
         <Info className="mt-0.5 size-4 shrink-0" />
         <p>
           Legacy WordPress addresses (old events, theme demo pages, <code className="font-mono text-xs">/page/1/</code> URLs) are redirected in code
-          (<code className="font-mono text-xs">next.config.ts</code>) and are not listed here. Rules here are checked only when no page exists at the old address.
+          (<code className="font-mono text-xs">next.config.mjs</code>) and are not listed here. Rules here are checked only when no page exists at the old address.
         </p>
       </div>
       <Card>

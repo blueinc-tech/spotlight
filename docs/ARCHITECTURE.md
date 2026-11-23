@@ -118,10 +118,10 @@ The visitor sees success only after the submission is stored. The report-downloa
   - posts: `Article`.
 - **Verification**: Google and Bing site-verification codes come from Settings → SEO.
 - **Legacy URLs**: WordPress paths are kept as they were, with trailing slashes.
-  - Retired URLs return 301/308 redirects (`next.config.ts`) or 410 Gone (`proxy.ts`).
+  - Retired URLs return 301/308 redirects (`next.config.mjs`) or 410 Gone (`proxy.ts`).
   - Editors can add more redirects in the database.
   - `proxy.ts` also redirects `/?s=` to `/search/?q=` and uppercase paths to lowercase.
-  - `next.config.ts` redirects the Yoast/WordPress sitemap URLs and `/index.php`.
+  - `next.config.mjs` redirects the Yoast/WordPress sitemap URLs and `/index.php`.
   - RSS feeds are served at `/feed/` and `/fr/feed/`.
   - Full mapping: `REDIRECT_MAP.csv`.
 
