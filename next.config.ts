@@ -37,14 +37,8 @@ const nextConfig: NextConfig = {
   cacheComponents: false,
   partialPrefetching: false,
   serverExternalPackages: ["@node-rs/argon2", "sharp"],
-  turbopack: {
-    rules: {
-      "*.css": {
-        loaders: ["@tailwindcss/turbopack"],
-        as: "*.css",
-      },
-    },
-  },
+  // Hostinger shared hosting kills extra build workers; build with webpack on one CPU.
+  experimental: { cpus: 1 },
   images: {
     formats: ["image/avif", "image/webp"],
     // 90 is used for photos (crisper detail, fewer compression artefacts); 75 stays the default.
@@ -79,6 +73,12 @@ const nextConfig: NextConfig = {
     ];
     const withSlash = (s: string) => (s.endsWith("*") ? s : `${s}/`);
     return [
+      {
+        source: "/:path*",
+        has: [{ type: "host" as const, value: "www.spotlightnigeria-france.com" }],
+        destination: "https://spotlightnigeria-france.com/:path*",
+        permanent: true,
+      },
       ...rules.flatMap(([from, to]) => [
         { source: withSlash(from), destination: to, permanent: true },
         { source: withSlash(`/fr${from}`), destination: to === "/" ? "/fr/" : `/fr${to}`, permanent: true },
