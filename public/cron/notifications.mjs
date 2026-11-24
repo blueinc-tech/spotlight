@@ -1,8 +1,10 @@
 /**
  * Daily retry of form notification emails, for hosts without Vercel Cron (e.g. Hostinger).
+ * It lives in public/ because Hostinger only keeps .next, node_modules, public and package.json
+ * on the server. It holds no secret: CRON_SECRET comes from the environment at run time.
  * Run it with the app's environment loaded, for example a Hostinger "Node.js" cron job:
  *
- *   node --env-file=<app .env> scripts/cron-notifications.mjs
+ *   node --env-file=<app .env> public/cron/notifications.mjs
  *
  * It calls /api/cron/notifications/ with CRON_SECRET and prints only the result counts.
  */
